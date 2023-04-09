@@ -12,29 +12,30 @@ public class Program {
 		for (char c:arr) {
 			letters[c] += 1;
 		}
-		short best[] = new short[10];
+		int best[] = new int[10];
 		byte count = 0;
 		for (int x = 0; x < 65535; x++) {
-			if (letters[x] != 0 && letters[x] >= best[count]) {
-				short tmp ;
+			//System.out.println(x);
+			if (letters[x] != 0 && count < 9){
+				best[count] = x;
+				count++;
+			}
+			else if (letters[x] != 0 && letters[x] <= letters[best[count]]) {
+				int tmp ;
 				
-				best[count] = (short)x;
+				best[count] = x;
 				for (byte i = (byte)(count - 1); i >= 0; i--) {
 					if (letters[best[i]] >= letters[x]) {
 						tmp = best[i];
-						best[i] = (short)x;
+						best[i] = x;
 						best[i + 1] = tmp;
 					}
 				}
 			}
-			else if (count <= 9){
-				best[count] = (short)x;
-				count++;
-			}
 		}
 		for (byte i = 0; best[i] != 0; i++) {
 			char c = (char)best[i];
-			System.out.println("char: "+c+"count: "+letters[best[i]]);
+			System.out.println("char: "+c+" count: "+letters[best[i]]);
 		}
 		
 	}
