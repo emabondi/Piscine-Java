@@ -16,24 +16,23 @@ public class Program {
 		byte count = 0;
 		for (int x = 0; x < 65535; x++) {
 			//System.out.println(x);
-			if (letters[x] != 0 && count < 9){
+			if (letters[x] != 0 && letters[x] >= letters[best[count]]) {
+				int tmp;
 				best[count] = x;
-				count++;
-			}
-			else if (letters[x] != 0 && letters[x] <= letters[best[count]]) {
-				int tmp ;
-				
-				best[count] = x;
-				for (byte i = (byte)(count - 1); i >= 0; i--) {
-					if (letters[best[i]] >= letters[x]) {
-						tmp = best[i];
-						best[i] = x;
-						best[i + 1] = tmp;
-					}
+				if (count <= 8)
+					count++;
+				if (count < 2)
+					continue ;
+				byte i = (byte)(count - 2);
+				while (i >= 0 && letters[best[i]] <= letters[best[i + 1]]) {
+					tmp = best[i];
+					best[i] = best[i + 1];
+					best[i + 1] = tmp;
+					i--;
 				}
 			}
 		}
-		for (byte i = 0; best[i] != 0; i++) {
+		for (byte i = 0; i < 9; i++) {
 			char c = (char)best[i];
 			System.out.println("char: "+c+" count: "+letters[best[i]]);
 		}
