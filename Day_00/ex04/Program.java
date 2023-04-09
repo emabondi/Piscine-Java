@@ -3,15 +3,39 @@ import java.util.Scanner;
 public class Program {
   public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		String s;
-		char[] str;
+		String str;
+		char arr[];
 
-		s = sc.nextLine();
-		str = s.toCharArray();
-		//System.out.println(str.length);
-		short[] letters;
-		for (int i = 0; i < str.length; i++) {
-			System.out.println(str[i]);
+		str = sc.nextLine();
+		arr = str.toCharArray();
+		short letters[] = new short[65535];
+		for (char c:arr) {
+			letters[c] += 1;
 		}
+		short best[] = new short[10];
+		byte count = 0;
+		for (int x = 0; x < 65535; x++) {
+			if (letters[x] != 0 && letters[x] >= best[count]) {
+				short tmp ;
+				
+				best[count] = (short)x;
+				for (byte i = (byte)(count - 1); i >= 0; i--) {
+					if (letters[best[i]] >= letters[x]) {
+						tmp = best[i];
+						best[i] = (short)x;
+						best[i + 1] = tmp;
+					}
+				}
+			}
+			else if (count <= 9){
+				best[count] = (short)x;
+				count++;
+			}
+		}
+		for (byte i = 0; best[i] != 0; i++) {
+			char c = (char)best[i];
+			System.out.println("char: "+c+"count: "+letters[best[i]]);
+		}
+		
 	}
 }
