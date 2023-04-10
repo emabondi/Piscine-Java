@@ -32,10 +32,20 @@ public class Program {
 					count++;
 			}
 		}
-		for (byte i = 0; i < count +1; i++) {
-			char c = (char)best[i];
-			System.out.println("char: "+c+" count: "+letters[best[i]]);
+		if (count == 9)
+			count++;
+		else if (count == 0)
+			return ;
+		System.out.println(letters[best[0]]);
+		float ratio = letters[best[0]] / 10;
+		for (byte y = 9; y >= 0; y--) {
+			for (byte i = 0; i < count; i++) {
+				//char c = (char)best[i];
+				System.out.println("value: "+letters[best[i]]+" ratio*: "+(ratio * (float)y));
+				if (letters[best[i]] > (ratio * (float)y))
+					System.out.print("#");
+			}
+			System.out.println();
 		}
-		
 	}
 }

@@ -35,6 +35,9 @@ public class Program {
 					tmp = 8;
 				else if (s.equals("9"))
 					tmp = 9;
+				else {
+					System.err.println("IllegalArgument");
+					System.exit(-1); }
 				if (tmp < min)
 					min = tmp;
 			}
