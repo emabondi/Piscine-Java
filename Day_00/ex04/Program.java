@@ -36,16 +36,32 @@ public class Program {
 			count++;
 		else if (count == 0)
 			return ;
-		System.out.println(letters[best[0]]);
-		float ratio = letters[best[0]] / 10;
-		for (byte y = 9; y >= 0; y--) {
+		System.out.println();
+		float ratio = (float)letters[best[0]] / 10;
+		for (byte i = 0; i < count && letters[best[i]] == letters[best[0]]; i++) {
+			if (letters[best[i]] <= 9)
+				System.out.print(" "+letters[best[i]]+" ");
+			else
+				System.out.print(letters[best[i]]+" ");
+		}
+		System.out.println();
+		for (byte y = 10; y > 0; y--) {
 			for (byte i = 0; i < count; i++) {
-				//char c = (char)best[i];
-				System.out.println("value: "+letters[best[i]]+" ratio*: "+(ratio * (float)y));
-				if (letters[best[i]] > (ratio * (float)y))
-					System.out.print("#");
+				if (letters[best[i]] >= (ratio * (float)y))
+					System.out.print(" # ");
+				else if (letters[best[i]] >= (ratio * (float)(y - 1))){
+					if (letters[best[i]] <= 9)
+						System.out.print(" "+letters[best[i]]+" ");
+					else
+						System.out.print(letters[best[i]]+" ");
+				}
+				//System.out.print("  ");
 			}
 			System.out.println();
 		}
+		for (byte i = 0; i < count; i++) {
+				System.out.print(" "+(char)best[i]+" ");
+		}
+		System.out.print("\n");
 	}
 }
