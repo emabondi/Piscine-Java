@@ -3,43 +3,27 @@ import java.util.Scanner;
 public class Program {
   public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		String str;
+		String	str;
+		int		n = 0;
 		byte	i = 1;
 		long	grades = 0;
 
-		str = sc.nextLine();
-		while (str.equals("Week " + i) && !str.equals("42")) {
-			Scanner	scan = new Scanner(System.in);
-			String	pattern = "[0-9]*";
-			String	s;
+		str = sc.next();
+		while (str.equals("Week") && !str.equals("42")) {
 			int 	min = 10;
 			int		tmp = 0;
 
-			for(byte k = 0; k < 5; k++) { 
-				s = scan.next(pattern);
-				if (s.equals("1"))
-					tmp = 1;
-				else if (s.equals("2"))
-					tmp = 2;
-				else if (s.equals("3"))
-					tmp = 3;
-				else if (s.equals("4"))
-					tmp = 4;
-				else if (s.equals("5"))
-					tmp = 5;
-				else if (s.equals("6"))
-					tmp = 6;
-				else if (s.equals("7"))
-					tmp = 7;
-				else if (s.equals("8"))
-					tmp = 8;
-				else if (s.equals("9"))
-					tmp = 9;
-				else {
+			n = sc.nextInt();
+			if (n != (int)i)
+				break ;
+			for(byte k = 0; k < 5; k++) {
+				n = sc.nextInt();
+				if (n < 1 || n > 9) {
 					System.err.println("IllegalArgument");
+					sc.close();
 					System.exit(-1); }
-				if (tmp < min)
-					min = tmp;
+				if (n < min)
+					min = n;
 			}
 			if (grades != 0)
 				grades *= 10;
@@ -47,11 +31,11 @@ public class Program {
 			if (i == 18)
 				break ;
 			i++;
-			str = sc.nextLine();
+			str = sc.next();
 		}
-		
-		if (!str.equals("Week " + i) && i != 18 && !str.equals("42")) {
+		if ((!str.equals("Week") || n != (int)i) && i != 18 && !str.equals("42")) {
 			System.err.println("IllegalArgument");
+			sc.close();
 			System.exit(-1);
 		}
 		long inverted = 0;
@@ -70,5 +54,6 @@ public class Program {
 			System.out.println(">");
 			inverted /= 10;
 		}
+		sc.close();
 	}
 }
