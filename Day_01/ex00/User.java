@@ -1,7 +1,7 @@
 import java.util.UUID;
 
 public class User {
-	private UUID	_identifier;
+	private final UUID	_identifier;
 	private String	_name;
 	private int		_balance;
 

@@ -1,11 +1,15 @@
 import java.util.UUID;
 
 public class Transaction {
-	UUID	_identifier;
-	User	_recipient;
-	User	_sender;
-	boolean	_category;
-	int		_amount;
+	private final UUID	_identifier;
+	private User	_recipient;
+	private User	_sender;
+	private int		_amount;
+	private Category transferCategory;
+
+    enum Category {
+        DEBIT, CREDIT
+    }
 
 	public	Transaction(User recipient, User sender, String category, int amount){
 	_identifier = UUID.randomUUID();
