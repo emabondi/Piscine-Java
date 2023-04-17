@@ -23,9 +23,16 @@ public class User {
 	}
 
 	public int	setBalance(int amount) {
-		if ((this._balance += amount) < 0)
+		int tmp = _balance;
+
+		if ((tmp += amount) < 0)
 			return 0;
 		this._balance += amount;
 		return 1;
+	}
+
+	@Override
+	public String toString() {
+		return "ID: " + _identifier + " name: " + _name + " balance: " + _balance;
 	}
 }

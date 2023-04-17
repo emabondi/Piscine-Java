@@ -7,9 +7,9 @@ public class Transaction {
 	private int		_amount;
 	private Category _transferCategory;
 
-    enum Category {
-        OUTCOME, INCOME
-    }
+	enum Category {
+		OUTCOME, INCOME
+	}
 
 	public	Transaction(User sender, User recipient,  Category cat, int amount){
 		_identifier = UUID.randomUUID();
@@ -20,16 +20,7 @@ public class Transaction {
 	}
 
 	@Override
-    public String toString() {
-		//String str;
-		//if (_transferCategory == Category.OUTCOME)
-		//	str = ", "
+	public String toString() {
 		return _sender.getName() + " -> " + _recipient.getName() + ", " + _amount + ", " + _transferCategory + ", " + _identifier;
-        //return "Transaction: \n" +
-        //        "identifier = " + _identifier +
-        //        "\nrecipient = " + _recipient.getName() +
-        //        "\nsender = " + _sender.getName() +
-        //        "\ntransferAmount = " + _amount +
-        //        "\ntransferCategory = " + _transferCategory;
-    }
+	}
 }
