@@ -4,15 +4,15 @@ public class Transaction {
 	private final UUID	_identifier;
 	private User	_sender;
 	private User	_recipient;
-	private int		_amount;
+	private Integer	_amount;
 	private Category _transferCategory;
 
 	enum Category {
 		OUTCOME, INCOME
 	}
 
-	public	Transaction(User sender, User recipient,  Category cat, int amount){
-		_identifier = UUID.randomUUID();
+	public	Transaction(UUID id, User sender, User recipient,  Category cat, Integer amount){
+		_identifier = id;
 		_sender = sender;
 		_recipient = recipient;
 		_transferCategory = cat;

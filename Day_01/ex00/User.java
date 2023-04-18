@@ -1,11 +1,11 @@
 import java.util.UUID;
 
 public class User {
-	private final int	_identifier;
+	private final Integer	_identifier;
 	private String	_name;
-	private int		_balance;
+	private Integer	_balance;
 
-	public User(int	identifier, String name, int balance){
+	public User(Integer	identifier, String name, Integer balance){
 		_identifier = identifier;
 		_name = name;
 		if (balance < 0)
@@ -14,7 +14,7 @@ public class User {
 			_balance = balance;
 	}
 
-	public int getIdentifier(){
+	public Integer getIdentifier(){
 		return this._identifier;
 	}
 
@@ -22,8 +22,8 @@ public class User {
 		return this._name;
 	}
 
-	public int	setBalance(int amount) {
-		int tmp = _balance;
+	public Integer	setBalance(Integer amount) {
+		Integer tmp = _balance;
 
 		if ((tmp += amount) < 0)
 			return 0;

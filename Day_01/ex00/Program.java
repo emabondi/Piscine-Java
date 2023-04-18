@@ -1,3 +1,4 @@
+import java.util.UUID;
 
 public class Program {
 
@@ -17,14 +18,15 @@ public class Program {
 	}
 
 	static void newTransaction(User sender, User recipient, int amount){
-		if (sender.setBalance(-amount) == 0){
+		if (amount < 0 || sender.setBalance(-amount) == 0){
 			System.out.println("Cannot execute transaction.");
 			return ;
 		}
+		final UUID	id = UUID.randomUUID();
 		recipient.setBalance(amount);
-		Transaction t1 = new Transaction(sender, recipient, Transaction.Category.OUTCOME, -amount);
+		Transaction t1 = new Transaction(id, sender, recipient, Transaction.Category.OUTCOME, -amount);
 		System.out.println(t1);
-		Transaction t2 = new Transaction(recipient, sender, Transaction.Category.INCOME, amount);
+		Transaction t2 = new Transaction(id, recipient, sender, Transaction.Category.INCOME, amount);
 		System.out.println(t2);
 	}
 }

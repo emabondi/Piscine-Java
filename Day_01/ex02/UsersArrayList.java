@@ -1,0 +1,3 @@
+class UserArrayList implements UsersList {
+	
+}
